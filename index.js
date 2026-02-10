@@ -7,10 +7,6 @@ const {createClient}= require('@supabase/supabase-js');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-console.log(process.env.PORT)
-console.log(process.env.SUPABASE_URL)
-console.log(process.env.SUPABASE_KEY)
-console.log(process.env.MONGO_URI)
 // Supabase connection
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY)
 
