@@ -1,21 +1,26 @@
 require('dotenv').config();
 // Tools
 const express = require('express');
-const mongoose = require('mongoose');
-const {createClient}= require('@supabase/supabase-js');
+// const { createClient } = require('@supabase/supabase-js');
+const connectDB = require('./src/config/database');
+const reportesRoutes = require('./src/routes/reportes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.use(express.json());
+
+connectDB();
+
+// DB Connection
+
+//Main route
+app.use("/api/reportes", reportesRoutes)
+
 // Supabase connection
-const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY)
+// const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY)
 
-// MongoDB connection
-mongoose.connect(process.env.MONGO_URI)
-    .then(() => console.log('Succesful Connection'))
-    .catch(err => console.error('Error MongoDB:', err))
-
-// Route
+/* // Route
 app.get("/", async(req, res) => {
     // Supabase Healthceck
     const {data, error} = await supabase.from('profiles').select('*').limit(1); 
@@ -25,7 +30,7 @@ app.get("/", async(req, res) => {
         database_nosql: mongoose.connection.readyState === 1 ? 'Connection ready' : 'Fail connection',
         supabase_auth: error ? `Error connection ${error.message}` : 'Online'
     });
-});
+}); */
 
 app.listen(PORT, () => {
     console.log(`Port connection running in: http://localhost:${PORT}`)

@@ -25,7 +25,7 @@ exports.createReporte = async (req, res) => {
             prioridad = "alta"
         }
 
-        const nuevoReporte = new Reporte({
+        const nuevoReporte = new reporte({
             titulo,
             descripcion,
             ubicacion,
