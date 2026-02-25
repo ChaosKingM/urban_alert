@@ -14,8 +14,15 @@ connectDB();
 
 // DB Connection
 
+
+app.get("/", (req, res) => {
+  res.status(200).send("Hey, You are in my backend!!!");
+});
+
+
 //Main route
 app.use("/api/reportes", reportesRoutes)
+
 
 // Supabase connection
 // const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY)

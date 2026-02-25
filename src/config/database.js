@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
+//Conexión a la base de datos de MongoDB
+
 const connectDB = async () => {
     try {
         //
