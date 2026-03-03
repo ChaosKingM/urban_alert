@@ -4,6 +4,7 @@ const express = require('express');
 // const { createClient } = require('@supabase/supabase-js');
 const connectDB = require('./src/config/database');
 const reportesRoutes = require('./src/routes/reportes');
+const authRoutes = require('./src/routes/usuarios');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -21,7 +22,9 @@ app.get("/", (req, res) => {
 
 
 //Main route
-app.use("/api/reportes", reportesRoutes)
+app.use("/api/reportes", reportesRoutes);
+
+app.use("/api/auth", authRoutes);
 
 
 // Supabase connection

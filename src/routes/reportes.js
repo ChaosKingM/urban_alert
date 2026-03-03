@@ -2,6 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 const reporteController = require('../controllers/reporteController');
+const usuarioController = require('../controllers/usuarioController');
 const userData = require('../helpers/jwt')
 const auth = require('../middlewares/auth');
 
@@ -12,11 +13,9 @@ const auth = require('../middlewares/auth');
   res.render('index.ejs');
 }); */
 
-router.get("/getAllReports", auth, reporteController.getReportes);
+router.get("/getAllReports", reporteController.getReportes);
 
 //POST
-router.post("/createReports", auth, reporteController.createReporte);
-
-router.get("/register", userData.register);
+router.post("/createReports", reporteController.createReporte);
 
 module.exports = router;

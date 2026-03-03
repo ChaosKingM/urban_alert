@@ -5,7 +5,7 @@ exports.register = async (req, res) => {
 
         const payload = {
             email: "tucola",
-            passoword: "tu_contraseña_larga_negra_y_segura"
+            password: "tu_contraseña_larga_negra_y_segura"
         }
         
         const token = jwt.sign(
@@ -18,6 +18,7 @@ exports.register = async (req, res) => {
             msg: 'Login exitosa',
             token: token,
         })
+
 
       /*   res.json({
             error: null,
