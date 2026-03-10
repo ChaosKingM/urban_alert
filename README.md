@@ -37,18 +37,20 @@ After typing this command, you must wait for the installation to complete. Once 
 
 ### Environment Variables Configuration
 
-Now that you installed the NPM modules, you must configure the Environment Variables for this code to work, my first recommendation is to copy the ***.env.template*** into a ***.env*** file by employing the next command.
+Now that you installed the NPM modules, you must configure the Environment Variables for this code to work.
 
-Windows
+1. Copy the ***.env.template*** into a ***.env*** file by employing the next command.
+
+Linux
 ```console
 cp .env.template .env
 ```
-Linux
+Windows
 ```console
 copy .env.template .env
 ```
 
-After you typed this command, a new file named ***.env*** should have been created, which contains the following content.
+2. A new file named ***.env*** should have been created, which contains the following content.
 
 ```.env
 # Port where the express server runs
@@ -64,14 +66,14 @@ API_KEY=
 SECRET_TOKEN=
 ```
 
-You must fill the variables depending on which database you are going to use, in this case for this project and this code, we did use MongoDB. It is important that you fill your MongoDB URL to allow this code, the final result should look like this:
+3. You must fill the variables depending on which database you are going to use, in this case for this project and this code, we did use MongoDB. It is important that you fill your MongoDB URL to allow this code, the final result should look like this:
 
 ```.env
 # Port where the express server runs
 PORT=3000
 
 # URL that establishes connection to DB
-DB_URL='mongodb+srv://<user>:<db_password>@<project_name>.klm0mvd.mongodb.net/?appName=SoftArch'
+DB_URL='mongodb+srv://<user>:<db_password>@<project_name>.<tu_cluster>.mongodb.net/?appName=SoftArch'
 
 # API key for supabase (WIP)
 API_KEY=
@@ -80,7 +82,7 @@ API_KEY=
 SECRET_TOKEN=
 ```
 
-Once you did paste the URL for MongoDB, you can run your server by typing the following command in your terminal.
+4. Now you can run your server by typing the following command in your terminal.
 
 ```console
 node index.js
@@ -97,36 +99,24 @@ These are the technologies that were employed for the development of this projec
 - **JWT:** JSON Web Token (JWT) is an open standard (RFC 7519) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object.
 - **Bcrypt:** Bcrypt is a password-hashing function designed by Niels Provos and David Mazières, based on the Blowfish cipher. 
 
-## Technologies Used
+## Main Endpoints
 These are the main endpoints that are used by this software.
 
 ### Auth
 Endpoints related to the authorization of the user.
 
-#### Get All Users
-Gets all the users stored in the database.
-> http://localhost:3000/api/auth/getAllUsers
+### Auth (`/api/auth`)
 
+The base URL that is used in this project is `http://localhost:3000`
 
-#### Register
-Registers an user into the database.
-> http://localhost:3000/api/auth/createUser
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| **GET** | `/getAllUsers` | Gets all the users stored in the database. |
+| **POST** | `/createUser` | Registers a user into the database. |
+| **POST** | `/loginUser` | Log the user into the platform. |
+---
 
-This endpoint requires a body such as this:
-
-```json
-{
-  "email": "ola@gmail.com",
-  "password": "contrasena"
-}
-```
-
-#### Login
-Log the user into the platform.
-> http://localhost:3000/api/auth/loginUser
-
-
-This endpoint requires a body such as this:
+The endpoints that are posts require a body such as this:
 
 ```json
 {
@@ -135,19 +125,14 @@ This endpoint requires a body such as this:
 }
 ```
 
-### Reports
-Endpoints related to the creation of reports.
+### Reports (`/api/reportes`)
 
-#### Get All Reports
-Obtain all reports that were created in the database.
->http://localhost:3000/api/reportes/getAllReports
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| **GET** | `/getAllReports` | Obtain all reports created in the database. |
+| **POST** | `/createReports` | Create a report and store it into the database. |
 
-#### Create a Report
-Create a report and store it into the database.
-> http://localhost:3000/api/reportes/createReports
-
-This endpoint requires a body such as this:
-
+The endpoints that are posts require a body such as this:
 
 ```json
 {
