@@ -1,4 +1,4 @@
-const jwt = require('jsonwebtoken');
+/* const jwt = require('jsonwebtoken');
 //Create new user registration
 exports.register = async (req, res) => {
     try {   
@@ -19,13 +19,8 @@ exports.register = async (req, res) => {
             token: token,
         })
 
-
-      /*   res.json({
-            error: null,
-            data: 'aquí va ir la data'
-        }) */
     } catch (error) {
         res.status(500).json({error: "Error: Create usr data", message: error})
     }
-}
+} */
 
