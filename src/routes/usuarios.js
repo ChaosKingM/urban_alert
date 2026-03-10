@@ -3,9 +3,9 @@ const express = require('express');
 const router = express.Router();
 const usuarioController = require('../controllers/usuarioController');
 //const userData = require('../helpers/jwt')
-//const auth = require('../middlewares/auth');
+const auth = require('../middlewares/auth');
 
-router.get("/getAllUsers", usuarioController.getAllUsers);
+router.get("/getAllUsers", auth, usuarioController.getAllUsers);
 
 router.post("/createUser", usuarioController.createUser);
 

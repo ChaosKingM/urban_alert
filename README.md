@@ -124,6 +124,7 @@ The endpoints that are posts require a body such as this:
   "password": "contrasena"
 }
 ```
+> NOTE: /getAllUsers endpoint requires a Bearer Token in the Authorization header.
 
 ### Reports (`/api/reportes`)
 
@@ -141,3 +142,5 @@ The endpoints that are posts require a body such as this:
   "ubicacion": "Casa de vidal"
 }
 ```
+
+> NOTE: These endpoints requires a Bearer Token in the Authorization header.
