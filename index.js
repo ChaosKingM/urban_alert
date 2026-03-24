@@ -8,23 +8,57 @@ const express = require('express');
 const connectDB = require('./src/config/database');
 const reportesRoutes = require('./src/routes/reportes');
 const authRoutes = require('./src/routes/usuarios');
+const swaggerUi = require('swagger-ui-express');
+const swaggerJsdoc = require('swagger-jsdoc');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+const swaggerOptions = {
+    definition: {
+        openapi: '3.0.0',
+        info: {
+            title: 'UrbanAlert API',
+            version: '1.0.0',
+            description: 'API para ella aplicación de alertas urbanas',
+        }, 
+        servers: [
+            {
+                url: `http://localhost:${PORT}`,
+            }
+        ]
+    },
+    apis: ['./index.js', './src/routes/*.js'], 
+};
 
 app.use(express.json());
 
 connectDB();
 
+const swaggerDocs = swaggerJsdoc(swaggerOptions);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+
 // DB Connection
 
-
+/**
+ * @openapi
+ * /:
+ *   get:
+ *     tags:
+ *       - System
+ *     summary: Welcome message
+ *     responses:
+ *       200:
+ *         description: A simple welcome message
+ */
 app.get("/", (req, res) => {
   res.status(200).send("Hey, You are in my backend!!!");
 });
 
 
 //Main route
+
+
 app.use("/api/reportes", reportesRoutes);
 
 app.use("/api/auth", authRoutes);
